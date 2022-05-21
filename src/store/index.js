@@ -32,6 +32,18 @@ export default createStore({
       return character.status.includes(status) //Esto quiere decir que va a retornar todos los personajes que tengan el estatus que nosotros le indiquemos
       }) 
       commit('setCharactersFilter', results)
+    },
+    filterByName ({commit, state}, name) {
+      const formatName = name.toLowerCase()
+      const results = state.characters.filter((character) => {  //Este results tenemos que almacenarlo en las mutations de setCharacterFilter. Para eso vamos a utilizar el commit.
+        const characterName = character.name.toLowerCase()
+
+        if(characterName.includes(formatName)) {
+          return character
+
+        }
+      })
+      commit('setCharactersFilter', results) //Para eso vamos a utilizar el commit. Vamos a crear un componente nuevo
     }
   },
   modules: {
