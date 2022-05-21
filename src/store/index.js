@@ -26,6 +26,12 @@ export default createStore({
       } catch (error) {
         console.error(error);
       }
+    },
+    filterByStatus ({commit, state}, status){ // el state y aquí va a recibir el estatus que le vamos a mandar nosotros desde nuestro componente.
+      const results = state.characters.filter ((character) => { //Aquí va a recibir un charácter, es decir, que vamos a recorrer todos los personajes de este array,
+      return character.status.includes(status) //Esto quiere decir que va a retornar todos los personajes que tengan el estatus que nosotros le indiquemos
+      }) 
+      commit('setCharactersFilter', results)
     }
   },
   modules: {
